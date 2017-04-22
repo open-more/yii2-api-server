@@ -1,6 +1,6 @@
-医² (Medchannel) 服务端项目
+Openmore 基于Yii2 开源API服务
 ===============================
-1. fork 代码`git clone https://git.oschina.net/medchannel/server.git medchannel`
+1. fork 代码`git clone https://github.com/open-more/yii2-api-server.git`
 2. 安装 vendor`composer install`
 3. 复制配置文件 `php init --env=Development --overwrite=all`
 4. 检查本地环境 `php requirements`

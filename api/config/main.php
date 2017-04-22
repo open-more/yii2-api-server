@@ -11,28 +11,33 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'api\controllers',
-//    模块声明
     'modules' => [
-        'v1' => [
-            'class' => 'api\modules\v1\Module',
+        'v1' => [   //  v1 版本接口
+            'class' => \api\modules\v1\Module::class,
         ],
     ],
-//    组件
     'components' => [
+        'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser'
+            ],
+        ],
+        'response' => [
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'charset' => 'utf-8',
+        ],
         'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => false,
+//            'identityClass' => \common\activeRecords\User::class,
+            'enableAutoLogin' => false, //  无状态 api 不使用 session
             'enableSession' => false,
         ],
 //        引入日志配置文件
         'log' => require 'log.php',
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
-            'showScriptName' => false,
-//            引入路由配置
-            'rules' => require 'route.php',
+            'enablePrettyUrl' => true, //  美化 url
+            'enableStrictParsing' => true, //  严格解析, 路由必须经过 route.php 文件定义, 不使用隐式路由
+            'showScriptName' => false, //  不显示 index.php
+            'rules' => require 'route.php', //  引入路由配置
         ],
-    ],
     'params' => $params,
 ];
