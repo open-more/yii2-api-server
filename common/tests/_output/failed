@@ -1,0 +1,9 @@
+tests/unit/components/JwtAuthCest.php:testScope
+tests/unit/components/JwtAuthCest.php:testOtherScope
+tests/unit/components/JwtAuthCest.php:testBanToken
+tests/unit/components/JwtAuthCest.php:testGetIdFromToken
+tests/unit/components/JwtAuthCest.php:testGetIdFromToken2
+tests/unit/components/JwtAuthCest.php:testGetIdFromToken3
+tests/unit/components/JwtAuthCest.php:testGetGuestIdFromToken
+tests/unit/components/JwtAuthCest.php:testCheckRefreshToken
+tests/unit/components/JwtAuthCest.php:testCheckGetNonce

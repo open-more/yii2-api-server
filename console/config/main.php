@@ -16,6 +16,14 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
           ],
+        'migrate' => [
+            'class' => \yii\console\controllers\MigrateController::class,
+            'migrationNamespaces' => [
+                'console\migrations\user',
+                'console\migrations\operation',
+                'console\migrations\tag',
+            ]
+        ]
     ],
     'components' => [
         'log' => [
@@ -25,6 +33,10 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        // 添加rbac权限控制
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
     ],
     'params' => $params,

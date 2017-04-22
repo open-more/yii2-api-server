@@ -10,16 +10,28 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['gii','log'],
     'modules' => [
         'v1' => [
             'class' => 'backend\modules\v1\Module',
         ],
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ]
     ],
     'components' => [
-
+        'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser'
+            ],
+        ],
+        'response' => [
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'charset' => 'utf-8',
+        ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => \common\activeRecords\Administrator::class,
+//            无状态 api 不使用 session
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],
@@ -32,6 +44,10 @@ return [
                 ],
             ],
         ],
+        // 添加rbac权限控制
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -39,8 +55,8 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+//            引入路由配置
+            'rules' => require 'route.php',
         ],
     ],
     'params' => $params,
