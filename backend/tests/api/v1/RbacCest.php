@@ -1,6 +1,6 @@
 <?php
-namespace v1;
-use \ApiTester;
+namespace backend\tests\api\v1;
+use backend\tests\ApiTester;
 use Codeception\Util\HttpCode;
 use common\activeRecords\Administrator;
 use Yii;

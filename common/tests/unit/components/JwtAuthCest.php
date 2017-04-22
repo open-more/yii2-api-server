@@ -1,7 +1,7 @@
 <?php
-namespace components;
+namespace common\tests\components;
 use common\components\JwtAuth;
-use \UnitTester;
+use common\tests\UnitTester;
 use Yii;
 
 class JwtAuthCest
@@ -28,6 +28,17 @@ class JwtAuthCest
         $I->expect(JwtAuth::SCOPE_APP === $this->auth->getScopeFromToken($token));
     }
 
+    public function testCheckGetNonce(UnitTester $I)
+    {
+        $I->am('user');
+        $I->wantTo("test Check GetNonce");
+
+        $nonce1 = $this->auth->getNonce(6);
+        $nonce2 = $this->auth->getNonce(6);
+        $I->assertNotEquals($nonce1, $nonce2);
+        $nonce3 = $this->auth->getNonce(12);
+        $I->assertEquals(12, strlen($nonce3));
+    }
 
     public function testOtherScope(UnitTester $I)
     {
@@ -62,7 +73,7 @@ class JwtAuthCest
     }
 
 
-    public function testGetIdFromToken(UnitTester $I)
+    public function testGetIdFromTokenWithDiffKey(UnitTester $I)
     {
         $id = 123;
         $this->tokenObj = $this->auth->createAccessToken($id);
@@ -76,28 +87,30 @@ class JwtAuthCest
     }
 
 
-    public function testGetIdFromToken2(UnitTester $I)
+    public function testGetIdFromTokenExpire(UnitTester $I)
     {
         $id = 123;
         $I->am('user');
         $I->wantTo("test Get Id From Token expired");
 
-        $this->auth->expire = -1;
+        $this->auth->expire = 1;
         $this->tokenObj = $this->auth->createAccessToken($id);
+        sleep(2);
         $I->assertNotEmpty($this->tokenObj);
         $I->expectException('common\exceptions\Exception', function(){
             $this->auth->getIdFromToken($this->tokenObj['token']);
         });
     }
 
-    public function testGetIdFromToken3(UnitTester $I)
+    public function testGetIdFromTokenRefresh(UnitTester $I)
     {
         $id = 123;
         $I->am('user');
         $I->wantTo("test Get Id From Token need refresh");
 
-        $this->auth->refresh = -1;
+        $this->auth->refresh = 1;
         $this->tokenObj = $this->auth->createAccessToken($id);
+        sleep(2);
         $I->assertNotEmpty($this->tokenObj);
         $I->expectException('common\exceptions\Exception', function(){
             $this->auth->getIdFromToken($this->tokenObj['token']);
@@ -128,15 +141,17 @@ class JwtAuthCest
         $I->expect($this->auth->getIdFromToken($newToken['token']) === $this->auth->getIdFromToken($this->tokenObj['token']));
     }
 
-    public function testCheckGetNonce(UnitTester $I)
-    {
-        $I->am('user');
-        $I->wantTo("test Check GetNonce");
 
-        $nonce1 = $this->auth->getNonce(6);
-        $nonce2 = $this->auth->getNonce(6);
-        $I->assertNotEquals($nonce1, $nonce2);
-        $nonce3 = $this->auth->getNonce(12);
-        $I->assertEquals(12, strlen($nonce3));
+    public function testCheckRefreshToken2(UnitTester $I)
+    {
+        $id = 123;
+        $I->am('user');
+        $I->wantTo("test Check Refresh Token2");
+
+        $this->tokenObj = $this->auth->createAccessToken($id);
+        $I->assertNotEmpty($this->tokenObj);
+        $newToken = $this->auth->refreshToken($this->tokenObj['token']);
+        $I->expect($this->auth->getIdFromToken($newToken['token']) === $this->auth->getIdFromToken($this->tokenObj['token']));
     }
+
 }

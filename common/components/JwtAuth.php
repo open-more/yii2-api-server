@@ -243,7 +243,7 @@ class JwtAuth extends Component
             throw new Exception(Code::TOKEN_EXPIRED);
         }
 
-        // 4.判断是否过期,上次发签名时间超过2小时
+        // 4.判断是否过期,上次发签名时间超时
         if($this->refresh > 0){
             if(!$tokenObj->hasClaim('iat') ||  time() - $tokenObj->getClaim('iat') > $this->refresh){
                 throw new Exception(Code::TOKEN_NEED_REFRESH);
@@ -308,7 +308,7 @@ class JwtAuth extends Component
         }
 
         // 1.检查签名
-        if(!$tokenObj->verify(new Sha256(), self::KEY)){
+        if(!$tokenObj->verify(new Sha256(), $this->key)){
             throw new Exception(Code::TOKEN_SIGN_ERROR);
         }
 

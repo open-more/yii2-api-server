@@ -1,7 +1,7 @@
 Openmore 基于Yii2 开源API服务
 ===============================
 关于Openmore
--------------------
+------------
 Openmore团队是目前北京的一家创业公司内里的几个主程自发组织的开源团队, 团队目标是将创业过程中技术团队遇到的技术经验进行开源分享, 本着更开放,更高效的原则帮助中国的移动开发者填坑,减少开发成本,同时吸收大家的意见与建议。
 项目组成
 -------
@@ -20,6 +20,7 @@ android-demo:   android客户端, 内容同上
 4. Nodejs >=4.x
 5. redis
 6. nginx
+
 # 推荐1台以上的云主机,如:一台Server,一台DB,一台开发环境(测试环境)
 ```
 第三方技术
@@ -57,6 +58,7 @@ API Server & Web Server       DB & redis            Development Env
 4. 检查本地环境 `php requirements`
 5. 创建自己的数据, 修改 `common/config/main-local.php` 配置数据库信息
 6. 在项目根目录下,执行 `php yii migrate && php yii migrate --migrationPath=@yii/rbac/migrations`
+
 DIRECTORY STRUCTURE
 -------------------
 
@@ -90,6 +92,7 @@ vendor                      第三方composer包
 本代码基于RESTful规范编写, 具体参考:https://en.wikipedia.org/wiki/Representational_state_transfer, 中文请参考:http://www.ruanyifeng.com/blog/2011/09/restful
 
 ####请求及响应数据都使用json, 请求Head示例:
+
 ```
 Accept = application/json
 Content-Type: application/json; charset=utf-8
@@ -105,6 +108,7 @@ X-IDFA：ios的广告id(可无)
 ####响应结果示例:
 
 ####请求成功，业务成功
+
 Http status code = 200
 ```
 {
@@ -113,6 +117,7 @@ Http status code = 200
 }
 ```
 ####请求成功，业务失败
+
 Http status code = 400
 ```
 {
@@ -125,6 +130,7 @@ Http status code = 400
 ```
 
 ####请求失败
+
 ```
 {
   "name": "Unauthorized",

@@ -4,6 +4,6 @@ modules:
         - REST:
             url: v1/
             depends: Yii2
-        - \Helper\Api
+        - backend\tests\Helper\Api
     config:
         - Yii2
