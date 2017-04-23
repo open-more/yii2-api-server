@@ -59,6 +59,7 @@ API Server & Web Server       DB & redis            Development Env
 4. 检查本地环境 `php requirements`
 5. 创建自己的数据, 修改 `common/config/main-local.php` 配置数据库信息
 6. 在项目根目录下,执行 `php yii migrate && php yii migrate --migrationPath=@yii/rbac/migrations`
+7. 跑所有测试case `codecept run`
 
 DIRECTORY STRUCTURE
 -------------------
@@ -149,4 +150,4 @@ message：表示状态信息，业务请求成功，返回OK，其它情况下�
 
 name、type：只有Http请求失败时才返回，用于调试信息。
 
-```
+---
