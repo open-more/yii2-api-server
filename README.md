@@ -12,11 +12,11 @@ Openmore团队是目前北京的一家创业公司内里的几个主程自发组
 项目组成
 -------
 #### [yii2-api-server](https://github.com/open-more/yii2-api-server):
-App接口及后台管理接口服务, 基于Yii2框架实现, 通过DI对业务逻辑尽量进行解耦, 中间添加service层
+App接口及后台管理接口服务, 基于[Yii2](http://www.yiiframework.com)框架实现, 通过DI对业务逻辑尽量进行解耦, 中间添加service层
 #### [vue-app-cms](https://github.com/open-more/vue-app-cms):
-App的后台管理端,基于Vue2.0实现, 前后端完全分离, 所有接口通过yii2-api-sever提供
+App的后台管理端,基于[Vue2.0](http://vuejs.org)实现, 前后端完全分离, 所有接口通过yii2-api-sever提供
 #### [ios-demo](https://github.com/open-more/ios-demo):
-IOS客户端, 使用Objc实现, 实现了App里经常出现的绝大多数业务, 如:推送, 业务后台管理, 运营后台管理, 在线即时沟通, 三方登录分享, 订单业务管理, 优惠券==
+IOS客户端, 使用Objc实现, 实现了App里经常出现的绝大多数业务, 如:推送, 业务后台管理, 运营后台管理, 在线即时沟通, 三方登录分享, 订单业务管理, 优惠券等
 #### [android-demo](https://github.com/open-more/android-demo):
 android客户端, 内容同上
 运行环境

@@ -13,6 +13,7 @@ use Lcobucci\JWT\Token;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
 
 class JwtAuth extends Component
 {
@@ -53,6 +54,10 @@ class JwtAuth extends Component
      * @var int
      */
     public $max_request_count = 60;
+
+    public $return_scope = false;
+    public $return_user_id = false;
+    public $return_expire  = true;
 
     /**
      * 获得AccessToken
@@ -105,10 +110,20 @@ class JwtAuth extends Component
             }
             Yii::$app->cache->set($key, $value, $exp - time());
         }
-        return [
+        $returnBody = [
             'token' => $token->getToken()->__toString(),
             'expire_in' => ($now + $this->refresh)
         ];
+        if($this->return_expire){
+            $returnBody = ArrayHelper::merge(['expire_in' => ($now + $this->refresh)], $returnBody);
+        }
+        if($this->return_scope){
+            $returnBody = ArrayHelper::merge(['scope' => $scope], $returnBody);
+        }
+        if($this->return_user_id){
+            $returnBody = ArrayHelper::merge(['user_id' => $id], $returnBody);
+        }
+        return $returnBody;
     }
 
     /**
@@ -371,10 +386,20 @@ class JwtAuth extends Component
         }
 
 //        var_dump($newToken->getToken()->getClaims());
-        return [
+
+        $returnBody = [
             'token' => $newToken->getToken()->__toString(),
-            'expire_in' => (time() + $this->refresh)
         ];
+        if($this->return_expire){
+            $returnBody = ArrayHelper::merge(['expire_in' => (time() + $this->refresh)], $returnBody);
+        }
+        if($this->return_scope){
+            $returnBody = ArrayHelper::merge(['scope' => $scope], $returnBody);
+        }
+        if($this->return_user_id){
+            $returnBody = ArrayHelper::merge(['user_id' => $user_id], $returnBody);
+        }
+        return $returnBody;
     }
 
     /**
