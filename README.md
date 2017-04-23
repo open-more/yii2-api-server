@@ -2,16 +2,23 @@ Openmore 基于Yii2 开源API服务
 ===============================
 关于Openmore
 ------------
+<p align="center">
+    <a href="https://github.com/open-more" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/27731838?v=3&s=460" width="120" alt="Open More" />
+    </a>
+</p>
 Openmore团队是目前北京的一家创业公司内里的几个主程自发组织的开源团队, 团队目标是将创业过程中技术团队遇到的技术经验进行开源分享, 本着更开放,更高效的原则帮助中国的移动开发者填坑,减少开发成本,同时吸收大家的意见与建议。
 
 项目组成
 -------
-```
-yii2-api-server: App接口及后台管理接口服务, 基于Yii2框架实现, 通过DI对业务逻辑尽量进行解耦, 中间添加service层
-vue-app-cms:    App的后台管理端,基于Vue2.0实现, 前后端完全分离, 所有接口通过yii2-api-sever提供
-ios-demo:       IOS客户端, 使用Objc实现, 实现了App里经常出现的绝大多数业务, 如:推送, 业务后台管理, 运营后台管理, 在线即时沟通, 三方登录分享, 订单业务管理, 优惠券==
-android-demo:   android客户端, 内容同上
-```
+#### [yii2-api-server](https://github.com/open-more/yii2-api-server):
+App接口及后台管理接口服务, 基于Yii2框架实现, 通过DI对业务逻辑尽量进行解耦, 中间添加service层
+#### [vue-app-cms](https://github.com/open-more/vue-app-cms):
+App的后台管理端,基于Vue2.0实现, 前后端完全分离, 所有接口通过yii2-api-sever提供
+#### [ios-demo](https://github.com/open-more/ios-demo):
+IOS客户端, 使用Objc实现, 实现了App里经常出现的绝大多数业务, 如:推送, 业务后台管理, 运营后台管理, 在线即时沟通, 三方登录分享, 订单业务管理, 优惠券==
+#### [android-demo](https://github.com/open-more/android-demo):
+android客户端, 内容同上
 运行环境
 -------
 ```
@@ -28,11 +35,12 @@ android-demo:   android客户端, 内容同上
 ---------
 一个好的有效率团队最主要的工作是避免造轮子,本项目中使用到了一些第三方的技术, 这些技术经过我们长达两年的使用,稳定性和可靠性都不错,因此我们在项目里直接集成了这些技术,并且在服务器端进行了深度的模块化,在使用时非常方便
 ```
-1. 极光推送;
+- 极光推送;
 2. 云片短信平台;
 3. 诸葛io统计;
 4. 七牛云存储;
-5. 微信开放平台;
+5. 环信即时沟通;
+6. 微信开放平台;
 ```
 CI及一键发布
 ----------
@@ -151,3 +159,6 @@ message：表示状态信息，业务请求成功，返回OK，其它情况下�
 name、type：只有Http请求失败时才返回，用于调试信息。
 
 ---
+
+
+  [1]: https://avatars0.githubusercontent.com/u/27731838?v=3&s=460
