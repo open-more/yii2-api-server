@@ -92,7 +92,7 @@ vendor                      第三方composer包
 -------
 本代码基于RESTful规范编写, 具体参考:https://en.wikipedia.org/wiki/Representational_state_transfer, 中文请参考:http://www.ruanyifeng.com/blog/2011/09/restful
 
-####请求及响应数据都使用json, 请求Head示例:
+#### 请求及响应数据都使用json, 请求Head示例:
 
 ```
 Accept = application/json
@@ -106,9 +106,9 @@ X-DEVICE：Android为设备厂商名如：huawei P10，IOS为iPhone7，浏览器
 X-DEVICE-TOKEN：dev_id的加密token，当App第一次启动时会写入到设备里并加密。
 X-IDFA：ios的广告id(可无)
 ```
-####响应结果示例:
+#### 响应结果示例:
 
-####请求成功，业务成功
+#### 请求成功，业务成功
 
 Http status code = 200
 ```
@@ -117,7 +117,7 @@ Http status code = 200
   "expires_in": 1490961290
 }
 ```
-####请求成功，业务失败
+#### 请求成功，业务失败
 
 Http status code = 400
 ```
@@ -130,7 +130,7 @@ Http status code = 400
 }
 ```
 
-####请求失败
+#### 请求失败
 
 ```
 {
