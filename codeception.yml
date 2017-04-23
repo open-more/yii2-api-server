@@ -2,7 +2,7 @@
 include:
     - common
 #    - frontend
-#    - backend
+    - backend
 paths:
     log: console/runtime/logs
 settings:
